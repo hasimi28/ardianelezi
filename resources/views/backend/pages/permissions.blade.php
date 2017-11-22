@@ -6,7 +6,7 @@
             <div>
                 <h1><i class="fa fa-th-list"></i> Permissions</h1>
                 <p>SuperAdmins/Admins/Authors/Editors/Contributors/Subscribers</p>
-                <a href="{{route('users.create')}}" class="btn btn-primary">Add New Permissions</a>
+                <a href="{{route('permissions.create')}}" class="btn btn-primary">Add New Permissions</a>
             </div>
             <div>
                 <ul class="breadcrumb side">

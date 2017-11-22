@@ -12,7 +12,7 @@ use DB;
 use App\Http\Requests\UserRequest;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Validation\ValidationException;
-
+use App\Role;
 class UserController extends Controller
 {
     /**
@@ -90,7 +90,7 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        $user = User::findOrFail($id);
+        $user = User::where('id',$id)->with('roles')->first();
         return view('backend.pages.show_user')->withUser($user);
 
     }
@@ -103,8 +103,9 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        $user = User::findOrfail($id);
-        return view('backend.pages.edit_users')->withUser($user);
+        $roles = Role::all();
+        $user = User::where('id',$id)->with('roles')->first();
+        return view('backend.pages.edit_users')->withUser($user)->withRoles($roles);
     }
 
     /**
@@ -146,12 +147,22 @@ class UserController extends Controller
             $user->name = Input::get('name');
             $user->email =  Input::get('email');
             $user->password = Hash::make(Input::get('password'));
-            if($user->save()){
+            $user->save();
+
+
+            if(Input::get('roles')){
+                $roles = Input::get('roles', []);
+                $user->syncRoles($roles);
 
                 return response()->json($user, 201);
 
+            }else{
 
+                return response()->json($user, 201);
             }
+
+
+
 
 
 
@@ -162,13 +173,17 @@ class UserController extends Controller
             $user =  User::findOrFail($id);
             $user->name = Input::get('name');
             $user->email =  Input::get('email');
+            $user->save();
 
-
-            if($user->save()){
+            if(Input::get('roles')){
+                $roles = Input::get('roles', []);
+                $user->syncRoles($roles);
 
                 return response()->json($user, 201);
 
+            }else{
 
+                return response()->json($user, 201);
             }
 
 

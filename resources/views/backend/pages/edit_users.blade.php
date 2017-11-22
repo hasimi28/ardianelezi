@@ -19,12 +19,13 @@
     <div class="row">
         <div class="col-md-12">
             <div class="card">
+                <form class="form-horizontal"  id="forma_edit" action="{{route('users.update',$user->id)}}" method="POST">
+                    {{ csrf_field() }}
                 <div class="row">
-                    <div class="col-lg-6 col-md-offset-2">
+                    <div class="col-lg-5 col-md-12">
                         <div class="well bs-component">
-                            <form class="form-horizontal"  id="forma_edit" action="{{route('users.update',$user->id)}}" method="POST">
-                                {{ csrf_field() }}
-       >
+
+
                                 <input type='hidden' name='_method' value='PUT'>
                                 <fieldset>
                                     <legend>Edit Users</legend>
@@ -91,11 +92,65 @@
 sukses
                                     </div>
                                 </fieldset>
-                            </form>
+
+                        </div>
+                    </div>
+
+
+                    <div class="col-7 col-md-7">
+
+                        <div class="panel panel-primary">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">Roles</h3>
+                                {{ $user->roles->count() == 0 ? 'Per momentin nuk ka asnje rol me posht mund te zgjedhesh ndonje rol' :'' }}
+                            </div>
+                            <div class="panel-body">
+
+                                <div class="col-12 ol-lg-12">
+
+                                    <div class="bs-component">
+
+                                        <ul class="list-group">
+
+
+                                            @foreach($user->roles as $i)
+                                                <li class="list-group-item" style="display:none;">
+                                                    <i class="animated-checkbox">
+                                                        <label>
+                                                            <input type="checkbox"  class="checked1" value="{{$i->id}}"  ><span class="label-text"></span>
+                                                        </label>
+                                                    </i>
+
+                                                    {{$i->display_name}} <i class="m-sm-3">({{$i->description}})</i></li>
+                                            @endforeach
+
+                                            @foreach($roles as $p)
+
+                                                <li class="list-group-item">
+                                                    <i class="animated-checkbox">
+                                                        <label>
+                                                            <input type="checkbox"  class="checked1" value="{{$p->id}}" name="roles[]" ><span class="label-text"></span>
+                                                        </label>
+                                                    </i>
+
+                                                    {{$p->display_name}} <i class="m-sm-3">({{$p->description}})</i></li>
+
+                                            @endforeach
+
+
+
+
+                                        </ul>
+                                    </div>
+                                </div>
+
+
+                            </div>
                         </div>
                     </div>
 
                 </div>
+                </form>
             </div>
         </div>
     </div>
@@ -104,5 +159,17 @@ sukses
 @section('js')
 
     @include('backend.pages.js_files.edit_users_js')
+    <script>
 
+
+
+        var seen = {};
+        $('.checked1').each(function() {
+            var txt = $(this).val();
+            if (seen[txt])
+                $(this).prop('checked',true);
+            else
+                seen[txt] = true;
+        });
+    </script>
 @endsection

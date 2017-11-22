@@ -7,7 +7,9 @@
     <div class="page-title">
         <div>
             <h1><i class="fa fa-archive"></i> Roles </h1>
-            <p>Hire All User Roles </p>
+            <p>  All  Roles </p>
+
+            <a href="{{route('roles.create')}}" class="btn btn-primary">Add New Roles</a>
         </div>
         <div>
             <ul class="breadcrumb">
