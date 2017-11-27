@@ -18,10 +18,12 @@
                     </ul>
                 </li>
                 <!-- User Menu-->
+
                 <li class="dropdown"><a class="dropdown-toggle" href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-user fa-lg"></i></a>
                     <ul class="dropdown-menu settings-menu">
-                        <li><a href="page-user.html"><i class="fa fa-cog fa-lg"></i> Settings</a></li>
-                        <li><a href="page-user.html"><i class="fa fa-user fa-lg"></i> Profile</a></li>
+
+                        <li><a href="#" name="sq" class="lang"><i class="fa fa-cog fa-lg"></i> Shqip </a></li>
+                        <li><a href="#" name="de" class="lang"><i class="fa fa-user fa-lg"></i> Gjermanisht </a></li>
                         <li><a href="page-login.html"><i class="fa fa-sign-out fa-lg"></i> Logout</a></li>
                     </ul>
                 </li>
@@ -42,11 +44,12 @@
         </div>
         <!-- Sidebar Menu-->
         <ul class="sidebar-menu">
+
             <li class="active"><a href="index.html"><i class="fa fa-dashboard"></i><span>Dashboard</span></a></li>
-            <li class="treeview"><a href="#"><i class="fa fa-edit"></i><span>Posts/Videos</span><i class="fa fa-angle-right"></i></a>
+            <li class="treeview"><a href="#"><i class="fa fa-edit"></i><span>Posts/Categories</span><i class="fa fa-angle-right"></i></a>
                 <ul class="treeview-menu">
                     <li><a href="bootstrap-components.html"><i class="fa fa-circle-o"></i> Bootstrap Elements</a></li>
-                    <li><a href="http://fontawesome.io/icons/" target="_blank"><i class="fa fa-circle-o"></i> Font Icons</a></li>
+                    <li><a href="{{route('post.create')}}" ><i class="fa fa-circle-o"></i> Create Post</a></li>
                     <li><a href="ui-cards.html"><i class="fa fa-circle-o"></i> Cards</a></li>
                     <li><a href="widgets.html"><i class="fa fa-circle-o"></i> Widgets</a></li>
                 </ul>
@@ -102,3 +105,4 @@
         </ul>
     </section>
 </aside>
+

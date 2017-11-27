@@ -11,3 +11,5 @@
 <script type="text/javascript">$('#sampleTable').DataTable();</script>
 <script src="https://unpkg.com/vue@2.1.6/dist/vue.js"></script>
 <script src="/js/app.js"></script>
+
+<script src="{{asset('js/parsley.min.js')}}" type="text/javascript"></script>

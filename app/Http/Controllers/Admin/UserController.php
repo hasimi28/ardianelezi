@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers\Admin;
 
+
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\User;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Contracts\Session\Session;
 use DB;
@@ -21,11 +24,16 @@ class UserController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
+
+    {  if(Auth::user()->can('read-users')) {
+
         $users = User::orderBy('id','asc')->get();
         return view('backend.pages.users')->withUsers($users);
-    }
+    }else{
 
+        return redirect()->back()->with('message','Nuk keni qasje');
+    }
+    }
     /**
      * Show the form for creating a new resource.
      *
@@ -90,7 +98,7 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        $user = User::where('id',$id)->with('roles')->first();
+        $user = User::where('id', $id)->with('roles')->first();
         return view('backend.pages.show_user')->withUser($user);
 
     }
@@ -103,6 +111,7 @@ class UserController extends Controller
      */
     public function edit($id)
     {
+
         $roles = Role::all();
         $user = User::where('id',$id)->with('roles')->first();
         return view('backend.pages.edit_users')->withUser($user)->withRoles($roles);
@@ -117,82 +126,77 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        try {
-            $this->validate($request, [
-
-            'name' => 'required|max:25',
-            'email' => 'required|email|unique:users,email,'.$id,
-
-            ]);
-        } catch (ValidationException $e) {
-            return response()->json($e->validator->errors(), 422);
-        }
-
-
-        if(Input::get('check') == 'yes'){
+        if(Auth::user()->can('edit-user')) {
             try {
                 $this->validate($request, [
-                'password' => 'required|min:6|confirmed',
-                'password_confirmation' => 'required|min:6'
+
+                    'name' => 'required|max:25',
+                    'email' => 'required|email|unique:users,email,' . $id,
+
                 ]);
             } catch (ValidationException $e) {
                 return response()->json($e->validator->errors(), 422);
             }
 
 
+            if (Input::get('check') == 'yes') {
+                try {
+                    $this->validate($request, [
+                        'password' => 'required|min:6|confirmed',
+                        'password_confirmation' => 'required|min:6'
+                    ]);
+                } catch (ValidationException $e) {
+                    return response()->json($e->validator->errors(), 422);
+                }
 
 
-            $user = User::findOrFail($id);
+                $user = User::findOrFail($id);
 
-            $user->name = Input::get('name');
-            $user->email =  Input::get('email');
-            $user->password = Hash::make(Input::get('password'));
-            $user->save();
+                $user->name = Input::get('name');
+                $user->email = Input::get('email');
+                $user->password = Hash::make(Input::get('password'));
+                $user->save();
 
 
-            if(Input::get('roles')){
-                $roles = Input::get('roles', []);
-                $user->syncRoles($roles);
+                if (Input::get('roles')) {
+                    $roles = Input::get('roles', []);
+                    $user->syncRoles($roles);
 
-                return response()->json($user, 201);
+                    return response()->json($user, 201);
 
-            }else{
+                } else {
 
-                return response()->json($user, 201);
+                    return response()->json($user, 201);
+                }
+
+
+            } else {
+
+
+                $user = User::findOrFail($id);
+                $user->name = Input::get('name');
+                $user->email = Input::get('email');
+                $user->save();
+
+                if (Input::get('roles')) {
+                    $roles = Input::get('roles', []);
+                    $user->syncRoles($roles);
+
+                    return response()->json($user, 201);
+
+                } else {
+
+                    return response()->json($user, 201);
+                }
+
+
             }
-
-
-
-
 
 
         }else{
 
-
-
-            $user =  User::findOrFail($id);
-            $user->name = Input::get('name');
-            $user->email =  Input::get('email');
-            $user->save();
-
-            if(Input::get('roles')){
-                $roles = Input::get('roles', []);
-                $user->syncRoles($roles);
-
-                return response()->json($user, 201);
-
-            }else{
-
-                return response()->json($user, 201);
-            }
-
-
-
+            return response()->json('mes', 201);
         }
-
-
-
-
 
     }
 

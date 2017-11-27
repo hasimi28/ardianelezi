@@ -29,8 +29,10 @@ Route::resource('/users','Admin\UserController');
 Route::get('/dashboard','Admin\AdmController@dashboard')->name('backend.dashboard');
 Route::resource('/permissions', 'Admin\PermissionController', ['except' => 'destroy']);
 Route::resource('/roles', 'Admin\RoleController', ['except' => 'destroy']);
-
+Route::resource('/post', 'Admin\AdminPost', ['except' => 'destroy']);
 });
 
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/language', 'LanguageController@change_lang');
+
