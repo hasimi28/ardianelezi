@@ -29,7 +29,9 @@ Route::resource('/users','Admin\UserController');
 Route::get('/dashboard','Admin\AdmController@dashboard')->name('backend.dashboard');
 Route::resource('/permissions', 'Admin\PermissionController', ['except' => 'destroy']);
 Route::resource('/roles', 'Admin\RoleController', ['except' => 'destroy']);
-Route::resource('/post', 'Admin\AdminPost', ['except' => 'destroy']);
+Route::resource('/post', 'Admin\AdminPost');
+Route::resource('/category', 'Admin\CategoryPost');
+Route::resource('/tags', 'Admin\TagsController');
 });
 
 

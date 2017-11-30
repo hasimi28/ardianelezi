@@ -45,6 +45,7 @@
             <div class="card">
                 <div class="row">
                     <div class="col-lg-6 col-md-offset-2">
+
                         <div class="well bs-component">
                             <form class="form-horizontal" id="demo-form" action="{{route('post.store')}}" method="POST" data-parsley-validate>
                                 {{ csrf_field() }}
@@ -81,7 +82,7 @@
 
                                         <label class="col-lg-2 control-label" for="name">Title SQ</label>
                                         <div class="col-lg-10">
-                                            <input class="form-control" name="title_sq" id="name" type="text" placeholder="Title" required=""
+                                            <input class="form-control" name="title_sq" id="name" type="text" placeholder="Title Shqip" required=""
                                                    data-parsley-required-message="@lang('app_lang.parsley_required')">
                                         </div>
                                     </div>
@@ -90,11 +91,29 @@
 
                                         <label class="col-lg-2 control-label" for="name">Title DE</label>
                                         <div class="col-lg-10">
-                                            <input class="form-control" name="title_de" id="name" type="text" placeholder="Title"  required=""
+                                            <input class="form-control" name="title_de" id="name" type="text" placeholder="Title Deutch"  required=""
                                                    data-parsley-required-message="@lang('app_lang.parsley_required')">
                                         </div>
                                     </div>
 
+                                    <div class="form-group">
+
+                                        <label class="col-lg-2 control-label" for="name">Slug Sq</label>
+                                        <div class="col-lg-10">
+                                            <input class="form-control" name="slug_sq" id="name" type="text" placeholder="Slug Shqip" required=""
+                                                   data-parsley-required-message="@lang('app_lang.parsley_required')">
+                                        </div>
+                                    </div>
+
+
+                                    <div class="form-group">
+
+                                        <label class="col-lg-2 control-label" for="name">Slug De</label>
+                                        <div class="col-lg-10">
+                                            <input class="form-control" name="slug_de" id="name" type="text" placeholder="Slug Deutch" required=""
+                                                   data-parsley-required-message="@lang('app_lang.parsley_required')">
+                                        </div>
+                                    </div>
 
                                     <div class="form-group">
 

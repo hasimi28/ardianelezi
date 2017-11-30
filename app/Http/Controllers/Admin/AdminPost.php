@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Post;
@@ -45,6 +46,8 @@ class AdminPost extends Controller
         $this->validate($request, [
             'title_sq' => 'required',
             'title_de' => 'required',
+            'slug_sq' => 'required|alpha_dash|min:5|max:255|unique:posts,slug_sq',
+            'slug_de' => 'required|alpha_dash|min:5|max:255|unique:posts,slug_de',
             'desc_sq' => 'required',
             'desc_de' => 'required',
 
@@ -54,6 +57,8 @@ class AdminPost extends Controller
 
         $post->title_sq = $request->title_sq;
         $post->title_de = $request->title_de;
+        $post->slug_sq =  $request->slug_sq;
+        $post->slug_de = $request->slug_de;
         $post->desc_sq = Purifier::clean($request->desc_sq);
         $post->desc_de = Purifier::clean($request->desc_de);
         $post->category_id = $request->category_id;
@@ -81,7 +86,17 @@ class AdminPost extends Controller
      */
     public function edit($id)
     {
-        //
+        $postcategory = PostCategory::all();
+        $post = Post::find($id);
+
+        $cats = array();
+
+        foreach($postcategory as $category){
+
+            $cats[$category->id] = $category->name_sq;
+        }
+
+        return view('backend.pages.edit_post')->withPost($post)->withCategories($cats);
     }
 
     /**
@@ -93,7 +108,31 @@ class AdminPost extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $post = Post::find($id);
+
+        $this->validate($request, [
+            'title_sq' => 'required',
+            'title_de' => 'required',
+            'slug_sq' => 'required|alpha_dash|min:5|max:255|unique:posts,slug_sq,' . $post->id,
+            'slug_de' => 'required|alpha_dash|min:5|max:255|unique:posts,slug_de,' . $post->id,
+            'desc_sq' => 'required',
+            'desc_de' => 'required',
+
+        ]);
+
+
+
+        $post->title_sq = $request->title_sq;
+        $post->title_de = $request->title_de;
+        $post->slug_sq =  $request->slug_sq;
+        $post->slug_de = $request->slug_de;
+        $post->desc_sq = Purifier::clean($request->desc_sq);
+        $post->desc_de = Purifier::clean($request->desc_de);
+        $post->category_id = $request->category_id;
+        $post->updated_at = Carbon::now();
+
+        $post->save();
+        return redirect()->back()->with('success','Ky Postim u ndryshua me sukses');
     }
 
     /**
