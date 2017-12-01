@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Tag;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -30,9 +31,9 @@ class AdminPost extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-    {
+    {   $tags = Tag::all();
         $postcategory = PostCategory::all();
-        return view('backend.pages.create_post')->withPostcategory($postcategory);
+        return view('backend.pages.create_post')->withPostcategory($postcategory)->withTags($tags);
     }
 
     /**
@@ -64,7 +65,9 @@ class AdminPost extends Controller
         $post->category_id = $request->category_id;
 
         $post->save();
+        $post->tags()->sync($request->tags,false);
 
+        return redirect('backend/post')->with('success','Postimi u shtua me sukses');
     }
 
     /**
@@ -87,16 +90,25 @@ class AdminPost extends Controller
     public function edit($id)
     {
         $postcategory = PostCategory::all();
+        $tags = Tag::all();
         $post = Post::find($id);
 
         $cats = array();
 
         foreach($postcategory as $category){
 
-            $cats[$category->id] = $category->name_sq;
+            $cats[$category->id] = $category->NameTrans('name');
         }
 
-        return view('backend.pages.edit_post')->withPost($post)->withCategories($cats);
+        $tag = array();
+
+        foreach($tags as $t){
+
+            $tag[$t->id] = $t->NameTrans('name');
+        }
+
+
+        return view('backend.pages.edit_post')->withPost($post)->withCategories($cats)->withTag($tag);
     }
 
     /**
@@ -132,6 +144,13 @@ class AdminPost extends Controller
         $post->updated_at = Carbon::now();
 
         $post->save();
+
+        if(isset($request->tags)) {
+            $post->tags()->sync($request->tags);
+        }else{
+
+            $post->tags()->sync(array());
+        }
         return redirect()->back()->with('success','Ky Postim u ndryshua me sukses');
     }
 
@@ -143,6 +162,11 @@ class AdminPost extends Controller
      */
     public function destroy($id)
     {
-        //
+      $post = Post::find($id);
+      $post->tags()->detach();
+
+      $post->delete();
+
+        return redirect('backend/post')->with('success','Postimi u fshi me sukses');
     }
 }

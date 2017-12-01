@@ -18,19 +18,31 @@
     </div>
     <div class="row">
         <div class="col-md-12">
+
             <div class="card">
                 <div class="row">
+                    @if ($errors->any())
+                        <div class="alert alert-danger">
+
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
                     <div class="col-lg-8">
+
                         <div class="well bs-component">
                             <table class="table table-hover table-bordered" id="sampleTable">
                                 <thead>
                                 <tr>
 
 
-                                    <th  class="hidden-xs">ID</th>
+                                    <th  class="hidden-sm hidden-xs">ID</th>
                                     <th>Name SQ</th>
                                     <th>Name DE</th>
-                                    <th class="hidden-xs">Created</th>
+                                    <th class="hidden-sm hidden-xs">Created</th>
                                     <th>Action</th>
 
                                 </tr>
@@ -40,16 +52,19 @@
                                 @foreach($tags as $tag)
 
                                     <tr>
-                                        <td  class="hidden-xs"> {{ $tag->id }} </td>
+                                        <td  class="hidden-sm hidden-xs"> {{ $tag->id }} </td>
                                         <td> {{ $tag->name_sq }} </td>
                                         <td> {{ $tag->name_de }} </td>
                                         <td> {{ $tag->created_at }} </td>
-                                        <td style="text-align:center"><a href="{{route('tags.edit',$tag->id)}}" class="col-12 col-md-12 btn-primary btn-sm"> Edit </a>
-                                            <form action="{{route('tags.destroy',$tag->id)}}" id="form_delete" accept-charset="UTF-8" method="POST">
+                                        <td style="text-align:center">
+                                            <a href="{{route('tags.show',$tag->id)}}" class=" btn-info btn-block"> View </a>
+                                            <a href="{{route('tags.edit',$tag->id)}}" class="btn-primary btn-block" > Edit</a>
+
+                                            <form action="{{route('tags.destroy',$tag->id)}}" id="form_delete" accept-charset="UTF-8" method="POST" style="margin-top:3px">
                                                 {{ csrf_field() }}
                                                 <input type="hidden" name="_method" value="DELETE">
                                                 <input type="hidden" name="id" value="{{$tag->id}}">
-                                                <button type="submit"  class="col-12 col-md-12 btn-danger btn-sm delete">Delete</button>
+                                                <button type="submit"  class="col-12 col-md-12 btn-danger btn-block delete"> Delete</button>
                                             </form>
 
                                         </td>
@@ -66,6 +81,7 @@
                         </div>
                     </div>
                     <div class="col-lg-3">
+
                         @if (\Session::has('success'))
                             <div class="alert alert-success">
 
@@ -93,7 +109,9 @@
                             </div>
                         </form>
                     </div>
+
                 </div>
+
             </div>
         </div>
     </div>

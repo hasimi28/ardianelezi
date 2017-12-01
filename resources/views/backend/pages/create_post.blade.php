@@ -24,6 +24,8 @@
             "Wingdings=wingdings,zapf dingbats",
             fontsize_formats: "8px 10px 12px 14px 18px 24px 36px",
         });</script>
+
+    {!! Html::script('css/select2.min.css') !!}
 @endsection
 @section('content')
 
@@ -74,6 +76,21 @@
                                                 @endforeach
 
                                                 </select>
+
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+
+                                        <label class="col-lg-2 control-label" for="select">Tags</label>
+                                        <div class="col-lg-10">
+
+                                            <select class="form-control select2-multi" id="select" name="tags[]" multiple="multiple">
+                                                @foreach($tags as $tag)
+                                                    <option value="{{$tag->id}}">{{$tag->NameTrans('name')}}</option>
+                                                @endforeach
+
+                                            </select>
 
                                         </div>
                                     </div>
@@ -133,6 +150,15 @@
                                         </div>
                                     </div>
 
+                                    <div class="form-group">
+
+                                        <label class="col-lg-2 control-label" for="name">Images</label>
+                                        <div class="col-lg-10">
+                                            <input type="file" name="file" id="profile-img" class="btn btn-primary btn-file"> <img src="" id="profile-img-tag" width="200px" />
+                                        </div>
+
+                                    </div>
+
 
 
                                     <div class="form-group">
@@ -161,5 +187,26 @@
 
 @section('js')
 
+    {!! Html::script('js/select2.min.js') !!}
 
+    <script type="text/javascript">
+
+        $('.select2-multi').select2();
+
+
+                function readURL(input) {
+                    if (input.files && input.files[0]) {
+                        var reader = new FileReader();
+
+                        reader.onload = function (e) {
+                            $('#profile-img-tag').attr('src', e.target.result);
+                        }
+                        reader.readAsDataURL(input.files[0]);
+                    }
+                }
+        $("#profile-img").change(function(){
+            readURL(this);
+        });
+
+    </script>
 @endsection

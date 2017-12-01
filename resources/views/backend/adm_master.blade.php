@@ -4,7 +4,7 @@
 
     @include('backend.pages.head')
     @yield('head')
-
+  <title>  @yield('title') </title>
 </head>
 <body class="sidebar-mini fixed">
 

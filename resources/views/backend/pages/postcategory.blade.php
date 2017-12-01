@@ -44,11 +44,11 @@
                             <tr>
 
 
-                                <th class="hidden-xs">ID</th>
-                                <th class="hidden-xs">Category Sq</th>
-                                <th class="hidden-xs">Category De</th>
-                                <th class="hidden-xs">Created</th>
-                                <th class="hidden-xs">Updated</th>
+                                <th class="hidden-sm hidden-xs">ID</th>
+                                <th>Category Sq</th>
+                                <th>Category De</th>
+                                <th class="hidden-sm hidden-xs">Created</th>
+                                <th class="hidden-sm hidden-xs">Updated</th>
                                 <th>Action</th>
 
                             </tr>
@@ -58,17 +58,17 @@
                                 @foreach($postcategory as $cat)
 
                                     <tr>
-                                    <td class="hidden-xs"> {{ $cat->id }} </td>
-                                    <td class="hidden-xs"> {{ $cat->name_sq }} </td>
-                                        <td class="hidden-xs"> {{ $cat->name_de }} </td>
-                                    <td class="hidden-xs"> {{ $cat->created_at }} </td>
-                                        <td class="hidden-xs"> {{ $cat->updated_at }} </td>
-                                    <td style="text-align:center"><a href="{{route('category.edit',$cat->id)}}" class="col-12 col-md-12 btn-primary btn-sm"> Edit </a>
+                                    <td class="hidden-sm hidden-xs"> {{ $cat->id }} </td>
+                                    <td> {{ $cat->name_sq }} </td>
+                                        <td> {{ $cat->name_de }} </td>
+                                    <td class="hidden-sm hidden-xs"> {{ $cat->created_at }} </td>
+                                        <td class="hidden-sm hidden-xs"> {{ $cat->updated_at }} </td>
+                                    <td style="text-align:center"><a href="{{route('category.edit',$cat->id)}}" class="col-12 col-md-12 btn-primary btn-block"> <i class="fa fa-edit"></i> </a>
                                         <form action="{{route('category.destroy',$cat->id)}}" id="form_delete" accept-charset="UTF-8" method="POST">
                                             {{ csrf_field() }}
                                             <input type="hidden" name="_method" value="DELETE">
                                             <input type="hidden" name="id" value="{{$cat->id}}">
-                                            <button type="submit"  class="col-12 col-md-12 btn-danger btn-sm delete">Delete</button>
+                                            <button type="submit"  class="col-12 col-md-12 btn-danger btn-block delete"><i class="fa fa-trash"></i></button>
                                         </form>
 
                                        </td>

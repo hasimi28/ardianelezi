@@ -62,7 +62,8 @@ class TagsController extends Controller
      */
     public function show($id)
     {
-        //
+        $tags = Tag::findOrFail($id);
+        return view('backend.pages.showtag')->withTags($tags);
     }
 
     /**
@@ -110,8 +111,12 @@ class TagsController extends Controller
      */
     public function destroy($id)
     {
-        Tag::find($id)->delete();
+        $tag = Tag::find($id);
+        $tag->posts()->detach();
+
+        $tag->delete();
+
         Session::flash('success','Tagi u fshi me sukses');
-        return redirect()->back();
+        return redirect('backend/tags');
     }
 }

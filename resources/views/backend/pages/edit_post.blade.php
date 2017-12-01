@@ -25,6 +25,8 @@
             "Wingdings=wingdings,zapf dingbats",
             fontsize_formats: "8px 10px 12px 14px 18px 24px 36px",
         });</script>
+
+    {!! Html::script('css/select2.min.css') !!}
 @endsection
 @section('content')
 
@@ -67,6 +69,13 @@
                             <div class="col-lg-10">
                             {{ Form::select('category_id', $categories,null, ['class' => 'form-control','id'=>'select'])  }}
                             </div>
+                            </div>
+
+                            <div class="form-group">
+                                {{ Form::label('tag', 'Tag', ['class' => 'col-lg-2 control-label','for'=>'select2']) }}
+                                <div class="col-lg-10">
+                                    {{ Form::select('tags[]', $tag,null, ['class' => 'form-control  select2-multi','id'=>'select2','multiple'=>'multiple'])  }}
+                                </div>
                             </div>
 
                             <div class="form-group">
@@ -141,8 +150,12 @@
                             </div>
                         @endif
 
+
+
+
                         <b>Regjistruar : </b> {{date('M  j  Y - h:ia',strtotime($post->created_at))}} <br>
                         <b>Ndryshuar : </b>  {{date('M j Y - h:ia',strtotime($post->updated_at))}}
+
 
                     </div>
 
@@ -155,4 +168,11 @@
 @section('js')
 
 
+    {!! Html::script('js/select2.min.js') !!}
+
+    <script type="text/javascript">
+
+        $('.select2-multi').select2();
+        $('.select2-multi').select2().val({!!json_encode($post->tags()->allRelatedIds()) !!}).trigger('change');
+    </script>
 @endsection

@@ -33,14 +33,14 @@
                         <tr>
 
 
-                            <th class="hidden-xs">ID</th>
+                            <th class="hidden-sm hidden-xs">ID</th>
                             <th>Title SQ</th>
                             <th>Title DE</th>
-                            <th>Slug SQ</th>
-                            <th>Slug DE</th>
-                            <th>Desc SQ</th>
-                            <th>Desc DE</th>
-                            <th class="hidden-xs">Created</th>
+                            <th   class="hidden-sm hidden-xs">Slug SQ</th>
+                            <th  class="hidden-sm hidden-xs">Slug DE</th>
+                            <th  class="hidden-sm hidden-xs">Desc SQ</th>
+                            <th  class="hidden-sm hidden-xs">Desc DE</th>
+                            <th class="hidden-sm hidden-xs">Created</th>
                             <th>Action</th>
 
                         </tr>
@@ -50,20 +50,20 @@
                         @foreach($posts as $po)
 
                             <tr>
-                                <td class="hidden-xs"> {{ $po->id }} </td>
+                                <td class="hidden-sm hidden-xs"> {{ $po->id }} </td>
                                 <td> {{ $po->title_sq }} </td>
                                 <td> {{ $po->title_de }} </td>
-                                <td> {{ $po->slug_sq }} </td>
-                                <td> {{ $po->slug_de }} </td>
-                                <td>  {!! str_limit($po->desc_sq, $limit = 30, $end = '...') !!} </td>
-                                <td>  {!! str_limit($po->desc_de, $limit = 30, $end = '...') !!}  </td>
-                                <td class="hidden-xs"> {{ $po->created_at }} </td>
-                                <td style="text-align:center"><a href="{{route('post.edit',$po->id)}}" class="col-12 col-md-12 btn-primary btn-sm"> Edit </a>
+                                <td class="hidden-sm hidden-xs"> {{ $po->slug_sq }} </td>
+                                <td class="hidden-sm hidden-xs"> {{ $po->slug_de }} </td>
+                                <td class="hidden-sm hidden-xs">  {!! str_limit($po->desc_sq, $limit = 30, $end = '...') !!} </td>
+                                <td class="hidden-sm hidden-xs">  {!! str_limit($po->desc_de, $limit = 30, $end = '...') !!}  </td>
+                                <td class="hidden-sm hidden-xs"> {{ $po->created_at }} </td>
+                                <td style="text-align:center"> <a href="{{route('post.edit',$po->id)}}" class="col-12 col-md-12 btn-primary btn-block"> <i class="fa fa-edit"></i> </a>
                                     <form action="{{route('post.destroy',$po->id)}}" id="form_delete" accept-charset="UTF-8" method="POST">
                                         {{ csrf_field() }}
                                         <input type="hidden" name="_method" value="DELETE">
                                         <input type="hidden" name="id" value="{{$po->id}}">
-                                        <button type="submit"  class="col-12 col-md-12 btn-danger btn-sm delete">Delete</button>
+                                       <button type="submit"  class="col-12 col-md-12 btn-danger btn-block"><i class="fa fa-trash"></i></button>
                                     </form>
 
                                 </td>

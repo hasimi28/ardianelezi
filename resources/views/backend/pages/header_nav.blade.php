@@ -52,14 +52,13 @@
                     <li><a href="{{route('post.create')}}" ><i class="fa fa-circle-o"></i> Add Post</a></li>
                     <li><a href="{{route('category.index')}}" ><i class="fa fa-circle-o"></i> Category </a></li>
                     <li><a href="{{route('category.create')}}" ><i class="fa fa-circle-o"></i> Add Category </a></li>
-                    <li><a href="ui-cards.html"><i class="fa fa-circle-o"></i> Cards</a></li>
-                    <li><a href="widgets.html"><i class="fa fa-circle-o"></i> Widgets</a></li>
+
                 </ul>
             </li>
             <li class="treeview"><a href="#"><i class="fa fa-edit"></i><span>Tags</span><i class="fa fa-angle-right"></i></a>
                 <ul class="treeview-menu">
                     <li><a href="{{route('tags.index')}}"><i class="fa fa-circle-o"></i> View Tags</a></li>
-                    <li><a href="{{route('tags.create')}}" ><i class="fa fa-circle-o"></i> Add Tag</a></li>
+
 
                 </ul>
             </li>
@@ -70,7 +69,7 @@
                     <li><a href="{{route('permissions.index')}}" ><i class="fa fa-circle-o"></i> Permissions</a></li>
                     <li><a href="{{route('permissions.create')}}"><i class="fa fa-circle-o"></i> Create Permissions</a></li>
                     <li><a href="{{route('roles.index')}}"><i class="fa fa-circle-o"></i> Role </a></li>
-                    <li><a href="widgets.html"><i class="fa fa-circle-o"></i> Widgets</a></li>
+
                 </ul>
             </li>
             <li><a href="charts.html"><i class="fa fa-pie-chart"></i><span>Charts</span></a></li>

@@ -11,10 +11,10 @@ class Tag extends Model
     protected $fillable = ['name_sq','name_de'];
 
 
-    public function NameTrans($tagname)
+    public function NameTrans($name)
     {
         $locale=App::getLocale();
-        $column=$tagname.'_'.$locale;
+        $column=$name.'_'.$locale;
 
         return $this->{$column};
     }

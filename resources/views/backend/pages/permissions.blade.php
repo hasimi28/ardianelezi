@@ -33,10 +33,10 @@
                             <tr>
 
 
-                                <th class="hidden-xs">Slug</th>
-                                <th class="hidden-xs">Display Name</th>
+                                <th>Slug</th>
+                                <th>Display Name</th>
                                 <th>Description</th>
-                                <th class="hidden-xs">Created</th>
+                                <th class="hidden-xs hidden-sm">Created</th>
                                 <th>Action</th>
 
                             </tr>
@@ -46,16 +46,16 @@
                                 @foreach($permissions as $per)
 
                                     <tr>
-                                    <td class="hidden-xs"> {{ $per->name }} </td>
-                                    <td class="hidden-xs"> {{ $per->display_name }} </td>
+                                    <td> {{ $per->name }} </td>
+                                    <td> {{ $per->display_name }} </td>
                                     <td> {{ $per->description }} </td>
-                                    <td class="hidden-xs"> {{ $per->created_at }} </td>
-                                    <td style="text-align:center"><a href="{{route('users.edit',$per->id)}}" class="col-12 col-md-12 btn-primary btn-sm"> Edit </a>
+                                    <td class="hidden-xs hidden-sm"> {{ $per->created_at }} </td>
+                                    <td style="text-align:center"><a href="{{route('users.edit',$per->id)}}" class="col-12 col-md-12 btn-primary btn-block"> <i class="fa fa-edit"></i> </a>
                                         <form action="{{route('users.destroy',$per->id)}}" id="form_delete" accept-charset="UTF-8" method="POST">
                                             {{ csrf_field() }}
                                             <input type="hidden" name="_method" value="DELETE">
                                             <input type="hidden" name="id" value="{{$per->id}}">
-                                            <button type="submit"  class="col-12 col-md-12 btn-danger btn-sm delete">Delete</button>
+                                            <button type="submit"  class="col-12 col-md-12 btn-danger btn-block delete"><i class="fa fa-trash"></i></button>
                                         </form>
 
                                        </td>
