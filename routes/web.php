@@ -32,7 +32,10 @@ Route::resource('/category', 'Admin\CategoryPost');
 Route::resource('/tags', 'Admin\TagsController');
 });
 
-
+Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/', 'HomeController@index')->name('home');
 Route::get('/language', 'LanguageController@change_lang');
 Route::get('/kuran', 'KuranController@index');
+Route::get('/postwithcat/{id}', 'CatPostController@posts');
+Route::get('/fullpost/{id}', 'CatPostController@idpost');
+Route::get('/postwtag/{id}', 'TagspostController@show');

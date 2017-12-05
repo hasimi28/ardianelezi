@@ -1,69 +1,65 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
-    <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <div class="panel panel-default">
-                <div class="panel-heading">Login</div>
 
-                <div class="panel-body">
-                    <form class="form-horizontal" method="POST" action="{{ route('login') }}">
-                        {{ csrf_field() }}
+    <div class="kode_contact_wrap">
 
-                        <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                            <label for="email" class="col-md-4 control-label">E-Mail Address</label>
-
+        <!--CONTAINER START-->
+        <!--KODE CONTACT DES START-->
+        <div class="kode_contact_des">
+            <div class="container">
+                <div class="row">
+                    <div class="kode_contact_field">
+                        <div class="section_hdg hdg_2 hdg_3">
+                            <a href="#"><img src="images/hdg-img.png" alt=""></a>
+                            <h3>Perdorues</h3>
+                            <span><i class="fa icon-building"></i></span>
+                        </div>
+                        <form class="form-horizontal" method="POST" action="{{ route('login') }}">
+                            {{ csrf_field() }}
+                            <div class="col-md-3"></div>
                             <div class="col-md-6">
-                                <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required autofocus>
 
+                                <div class="kf_commet_field">
+                                    <input placeholder="Email" type="email" class="form-control" name="email" value="{{ old('email') }}" required autofocus>
+
+                                </div>
+
+                                <div class="kf_commet_field">
+                                    <input placeholder="Password" name="password" type="password" value="" data-default="Name*" size="30" required>
+
+                                </div>
+
+                                <div class="kf_commet_field mt-2">
                                 @if ($errors->has('email'))
-                                    <span class="help-block">
+                                    <span class="help-block alert alert-danger">
                                         <strong>{{ $errors->first('email') }}</strong>
                                     </span>
                                 @endif
-                            </div>
-                        </div>
-
-                        <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
-                            <label for="password" class="col-md-4 control-label">Password</label>
-
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control" name="password" required>
 
                                 @if ($errors->has('password'))
-                                    <span class="help-block">
+                                    <span class="help-block alert alert-danger">
                                         <strong>{{ $errors->first('password') }}</strong>
                                     </span>
                                 @endif
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <div class="col-md-6 col-md-offset-4">
-                                <div class="checkbox">
-                                    <label>
-                                        <input type="checkbox" name="remember" {{ old('remember') ? 'checked' : '' }}> Remember Me
-                                    </label>
                                 </div>
-                            </div>
-                        </div>
 
-                        <div class="form-group">
-                            <div class="col-md-8 col-md-offset-4">
-                                <button type="submit" class="btn btn-primary">
-                                    Login
-                                </button>
+                            <div class="col-md-12">
 
-                                <a class="btn btn-link" href="{{ route('password.request') }}">
-                                    Forgot Your Password?
-                                </a>
+                                <p class="form-submit"><input name="submit" type="submit" class="medium_btn background-bg-dark btn_hover hvr-wobble-bottom" value="Kyqu"></p>
                             </div>
-                        </div>
-                    </form>
+                            </div>
+                        </form>
+                    </div>
                 </div>
+                <!--KODE CONTACT SERVICE START-->
+
+                <!--KODE CONTACT SERVICE END-->
             </div>
+            <!--CONTAINER END-->
         </div>
+        <!--KODE CONTACT DES END-->
     </div>
-</div>
+    <!--KODE 404 WRAP END-->
+
 @endsection

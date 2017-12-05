@@ -27,7 +27,7 @@
 <link  href="{{ asset('css/themes/css/hover.css') }}" rel="stylesheet">
 <!--fontawseme CSS-->
 <link  href="{{ asset('css/themes/css/component.css') }}" rel="stylesheet">
-
+<link href="{{asset('css/themes/css/sidebar-widget.css')}}" rel="stylesheet">
 <!--fontawseme CSS-->
 
 <link  href="{{ asset('css/themes/css/jQuery-plugin-progressbar.css') }}" rel="stylesheet">

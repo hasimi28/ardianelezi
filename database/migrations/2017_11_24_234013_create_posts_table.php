@@ -17,8 +17,8 @@ class CreatePostsTable extends Migration
             $table->increments('id');
             $table->string('title_sq')->nullable();
             $table->string('title_de')->nullable();
-            $table->string('desc_sq')->nullable();
-            $table->string('desc_de')->nullable();
+            $table->text('desc_sq')->nullable();
+            $table->text('desc_de')->nullable();
             $table->string('slug_sq')->unique()->nullable();
             $table->string('slug_de')->unique()->nullable();
             $table->integer('category_id')->nullable();

@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Post;
 use App\PostCategory;
+use Intervention\Image\Facades\Image;
 use Mews\Purifier\Facades\Purifier;
 
 class AdminPost extends Controller
@@ -51,7 +52,7 @@ class AdminPost extends Controller
             'slug_de' => 'required|alpha_dash|min:5|max:255|unique:posts,slug_de',
             'desc_sq' => 'required',
             'desc_de' => 'required',
-
+            'image' => 'required|image',
         ]);
 
         $post = new Post;
@@ -64,6 +65,16 @@ class AdminPost extends Controller
         $post->desc_de = Purifier::clean($request->desc_de);
         $post->category_id = $request->category_id;
 
+
+        if($request->hasFile('image')){
+
+            $image = $request->file('image');
+            $filename = time().'.'.$image->getClientOriginalExtension();
+            $location = public_path('postimages/'.$filename);
+            Image::make($image)->resize(800,600)->save($location);
+            $post->image = $filename;
+
+        }
         $post->save();
         $post->tags()->sync($request->tags,false);
 
@@ -129,7 +140,7 @@ class AdminPost extends Controller
             'slug_de' => 'required|alpha_dash|min:5|max:255|unique:posts,slug_de,' . $post->id,
             'desc_sq' => 'required',
             'desc_de' => 'required',
-
+            'image'   => 'image',
         ]);
 
 
@@ -143,7 +154,24 @@ class AdminPost extends Controller
         $post->category_id = $request->category_id;
         $post->updated_at = Carbon::now();
 
-        $post->save();
+
+        if($request->hasFile('image')) {
+
+            $image = $request->file('image');
+            $filename = time() . '.' . $image->getClientOriginalExtension();
+            $location = public_path('postimages/' . $filename);
+            Image::make($image)->resize(800, 600)->save($location);
+
+            if(file_exists('postimages/'.$post->image)){
+                @unlink('postimages/'.$post->image);
+            }
+
+            $post->image = $filename;
+        }
+
+
+
+            $post->save();
 
         if(isset($request->tags)) {
             $post->tags()->sync($request->tags);
@@ -164,6 +192,11 @@ class AdminPost extends Controller
     {
       $post = Post::find($id);
       $post->tags()->detach();
+
+
+        if(file_exists('postimages/'.$post->image)){
+            @unlink('postimages/'.$post->image);
+        }
 
       $post->delete();
 

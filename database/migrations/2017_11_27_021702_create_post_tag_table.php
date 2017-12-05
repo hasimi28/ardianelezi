@@ -12,7 +12,7 @@ class CreatePostTagTable extends Migration
      * @return void
      */
     public function up()
-    {
+    {   if(!Schema::hasTable('post_tag')) {
         Schema::create('post_tag', function (Blueprint $table) {
             $table->increments('id');
 
@@ -23,6 +23,8 @@ class CreatePostTagTable extends Migration
             $table->foreign('tag_id')->reference('id')->on('tags');
             $table->timestamps();
         });
+
+    }
     }
 
     /**

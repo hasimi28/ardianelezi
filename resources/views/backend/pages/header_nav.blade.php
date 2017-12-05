@@ -22,9 +22,11 @@
                 <li class="dropdown"><a class="dropdown-toggle" href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-user fa-lg"></i></a>
                     <ul class="dropdown-menu settings-menu">
 
-                        <li><a href="#" name="sq" class="lang"><i class="fa fa-cog fa-lg"></i> Shqip </a></li>
-                        <li><a href="#" name="de" class="lang"><i class="fa fa-user fa-lg"></i> Gjermanisht </a></li>
-                        <li><a href="page-login.html"><i class="fa fa-sign-out fa-lg"></i> Logout</a></li>
+                        <li><a href="#" class="lang" name="de"><img src="{{ asset('css/themes/images/de.png') }}" alt=""> DE</a></li>
+                        <li><a href="#" class="lang" name="sq"><img src="{{ asset('css/themes/images/al.png') }}" alt=""> SQ</a></li>
+                        <li> <form action="{{URL('logout')}}" method="POST">
+                            {{ csrf_field() }}
+                         <button type="submit"  class="btn btn-md btn-primary" >Logout</button></form></li>
                     </ul>
                 </li>
             </ul>

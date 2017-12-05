@@ -370,6 +370,7 @@
 
 /*============	Media 979Px Start ============ */
 @media (max-width: 991px) {
+
 	.top_icon_fig {
 		display: none;
 	}
@@ -963,6 +964,8 @@
 	
 }
 
+
+
 /*============ Media 767Px Start ============ */
 @media (max-width: 767px) {
 	.kode_top_wrap .col-md-6{
@@ -1518,8 +1521,15 @@
 	}
 }
 
+
+
+
+
+
 /*============ Media 480Px Star ============ */
 @media (max-width: 480px) {
+
+
 	.kode_top_right_text {
 		display: none;
 	}

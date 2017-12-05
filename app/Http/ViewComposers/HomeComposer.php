@@ -1,9 +1,13 @@
 <?php
 
 namespace App\Http\ViewComposers;
+use App\Post;
+use Carbon\Carbon;
 use Illuminate\View\View;
 use \GeniusTS\PrayerTimes\Prayer;
 use \GeniusTS\PrayerTimes\Coordinates;
+use App\PostCategory;
+
 Class HomeComposer{
 
 
@@ -18,7 +22,7 @@ Class HomeComposer{
             $prayer->setCoordinates($longitude, $latitude);
 
             // Return an \GeniusTS\PrayerTimes\Times instance
-            $times = $prayer->times('2017-12-2');
+            $times = $prayer->times(Carbon::now());
             $times->setTimeZone(+3);
 
             $imsaku = $times->fajr->format('h:i a');
@@ -30,7 +34,15 @@ Class HomeComposer{
 
             $array = ['kohet' => ['imsaku' => $imsaku,'dreka'=>$dreka,'ikindia'=>$ikindia,'akshami'=>$akshami,'jacia'=>$jacia]];
 
-            $view->with('array',$array);
+            $category = PostCategory::all();
+            $category5 = PostCategory::all()->random()->get();;
+            $new_post = Post::orderBy('id', 'DESC')->take(5)->get();
+
+
+            $view->with('array',$array)
+                ->with('category',$category)
+                ->with('category5',$category5)
+                ->with('new_post',$new_post);
 
         }
 

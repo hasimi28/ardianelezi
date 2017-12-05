@@ -2,6 +2,7 @@
 
 namespace App\Http\Middleware;
 
+use Carbon\Carbon;
 use Closure;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Config;
@@ -22,6 +23,7 @@ class Language
 
             $locale = Session::get('locale',Config::get('app.locale'));
 
+            Carbon::setLocale($locale);
         }else{
 
             $locale = 'sq';

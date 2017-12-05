@@ -1,4 +1,4 @@
-@extends('backend.adm_master')
+ @extends('backend.adm_master')
 
 @section('head')
     <script src="https://cloud.tinymce.com/stable/tinymce.min.js"></script>
@@ -62,7 +62,7 @@
                                     </ul>
                                 </div>
                             @endif
-                            {{ Form::model($post,['route' => ['post.update',$post->id], 'method' => 'put','class'=>'form-horizontal']) }}
+                            {{ Form::model($post,['route' => ['post.update',$post->id], 'method' => 'put','class'=>'form-horizontal','files'=>true]) }}
                             {{ csrf_field() }}
                             <div class="form-group">
                             {{ Form::label('category', 'Category', ['class' => 'col-lg-2 control-label','for'=>'select']) }}
@@ -125,7 +125,14 @@
                                 </div>
                             </div>
 
+                            <div class="form-group">
 
+                                <label class="col-lg-2 control-label" for="name">Images</label>
+                                <div class="col-lg-10">
+                                    <input type="file" name="image" id="profile-img" class="btn btn-primary btn-file"> <img src="{{asset('postimages/'.$post->image)}}" id="profile-img-tag" width="200px" />
+                                </div>
+
+                            </div>
 
 
 
@@ -170,9 +177,29 @@
 
     {!! Html::script('js/select2.min.js') !!}
 
-    <script type="text/javascript">
+    {!! Html::script('js/select2.min.js') !!}
+
+        <script type="text/javascript">
+
+                $('.select2-multi').select2();
+
 
         $('.select2-multi').select2();
         $('.select2-multi').select2().val({!!json_encode($post->tags()->allRelatedIds()) !!}).trigger('change');
+
+
+                function readURL(input) {
+                    if (input.files && input.files[0]) {
+                        var reader = new FileReader();
+
+                        reader.onload = function (e) {
+                            $('#profile-img-tag').attr('src', e.target.result);
+                        }
+                        reader.readAsDataURL(input.files[0]);
+                    }
+                }
+                $("#profile-img").change(function(){
+                    readURL(this);
+                });
     </script>
 @endsection

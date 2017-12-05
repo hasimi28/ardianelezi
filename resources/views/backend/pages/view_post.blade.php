@@ -33,13 +33,10 @@
                         <tr>
 
 
-                            <th class="hidden-sm hidden-xs">ID</th>
-                            <th>Title SQ</th>
-                            <th>Title DE</th>
-                            <th   class="hidden-sm hidden-xs">Slug SQ</th>
-                            <th  class="hidden-sm hidden-xs">Slug DE</th>
-                            <th  class="hidden-sm hidden-xs">Desc SQ</th>
-                            <th  class="hidden-sm hidden-xs">Desc DE</th>
+                            <th>ID</th>
+                            <th>Title</th>
+                            <th class="hidden-sm hidden-xs">Slug</th>
+                            <th class="hidden-sm hidden-xs">Desc</th>
                             <th class="hidden-sm hidden-xs">Created</th>
                             <th>Action</th>
 
@@ -50,13 +47,12 @@
                         @foreach($posts as $po)
 
                             <tr>
-                                <td class="hidden-sm hidden-xs"> {{ $po->id }} </td>
-                                <td> {{ $po->title_sq }} </td>
-                                <td> {{ $po->title_de }} </td>
-                                <td class="hidden-sm hidden-xs"> {{ $po->slug_sq }} </td>
-                                <td class="hidden-sm hidden-xs"> {{ $po->slug_de }} </td>
-                                <td class="hidden-sm hidden-xs">  {!! str_limit($po->desc_sq, $limit = 30, $end = '...') !!} </td>
-                                <td class="hidden-sm hidden-xs">  {!! str_limit($po->desc_de, $limit = 30, $end = '...') !!}  </td>
+                                <td> {{ $po->id }} </td>
+                                <td> {{ $po->TextTrans('title') }} </td>
+
+                                <td class="hidden-sm hidden-xs"> {{ $po->TextTrans('slug') }} </td>
+                                <td class="hidden-sm hidden-xs">  {!! str_limit($po->TextTrans('desc'), 200) !!} </td>
+
                                 <td class="hidden-sm hidden-xs"> {{ $po->created_at }} </td>
                                 <td style="text-align:center"> <a href="{{route('post.edit',$po->id)}}" class="col-12 col-md-12 btn-primary btn-block"> <i class="fa fa-edit"></i> </a>
                                     <form action="{{route('post.destroy',$po->id)}}" id="form_delete" accept-charset="UTF-8" method="POST">

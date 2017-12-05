@@ -49,7 +49,7 @@
                     <div class="col-lg-6 col-md-offset-2">
 
                         <div class="well bs-component">
-                            <form class="form-horizontal" id="demo-form" action="{{route('post.store')}}" method="POST" data-parsley-validate>
+                            <form class="form-horizontal" id="demo-form" action="{{route('post.store')}}" method="POST" data-parsley-validate enctype="multipart/form-data">
                                 {{ csrf_field() }}
 
                                 <fieldset>
@@ -154,7 +154,7 @@
 
                                         <label class="col-lg-2 control-label" for="name">Images</label>
                                         <div class="col-lg-10">
-                                            <input type="file" name="file" id="profile-img" class="btn btn-primary btn-file"> <img src="" id="profile-img-tag" width="200px" />
+                                            <input type="file" name="image" id="profile-img" class="btn btn-primary btn-file"> <img src="" id="profile-img-tag" width="200px" />
                                         </div>
 
                                     </div>
