@@ -10,19 +10,23 @@ use DB;
 
 class CatPostController extends Controller
 {
-    public function posts($id){
+    public function posts($name){
 
-        $cat = PostCategory::where('id','=',$id)->get();
-        $posts = Post::where('category_id','=',$id)->paginate(10);
+        $cat = PostCategory::where('name_sq',strtolower($name))->orWhere('name_de',strtolower($name))->get();
+
+        foreach($cat as $c){
+            $posts = Post::where('category_id','=',$c->id)->paginate(10);
+        }
+
 
         return view('postwithkat')->withCat($cat)->withPosts($posts);
     }
 
 
-    public function idpost($id)
+    public function idpost($slug)
     {
 
-        $full_post = Post::where('id', '=', $id)->get();
+        $full_post = Post::where('slug_sq', '=', $slug)->orWhere('slug_de','=',$slug)->get();
 
         foreach ($full_post as $p){
         $next = Post::where('id', '>', $p->id)->first();

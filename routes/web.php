@@ -36,6 +36,9 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/', 'HomeController@index')->name('home');
 Route::get('/language', 'LanguageController@change_lang');
 Route::get('/kuran', 'KuranController@index');
-Route::get('/postwithcat/{id}', 'CatPostController@posts');
-Route::get('/fullpost/{id}', 'CatPostController@idpost');
+//Route::get('/postwithcat/{id}', 'CatPostController@posts');
+Route::get('/category/{name}',['as'=>'category.post', 'uses'=>'CatPostController@posts'] );
+
+Route::get('/fullpost/{slug}',['as'=>'blog.post', 'uses'=>'CatPostController@idpost'])
+    ->where('slug_de','[\w\d\-\_]+');
 Route::get('/postwtag/{id}', 'TagspostController@show');

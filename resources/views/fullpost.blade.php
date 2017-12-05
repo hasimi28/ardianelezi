@@ -4,13 +4,24 @@
 
 
     <link href="{{asset('css/themes/css/mycss.css')}}" rel="stylesheet">
-
+    <meta property="fb:admins" content="{275612799576215}" />
 @section('title')
     @foreach($fullpost as $post) {{$post->TextTrans('title')}} @endforeach
 @endsection
 @endsection
 
 @section('content')
+    <div id="fb-root"></div>
+    <script>(function(d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) return;
+            js = d.createElement(s); js.id = id;
+            js.src = 'https://connect.facebook.net/sq_AL/sdk.js#xfbml=1&version=v2.11&appId=275612799576215';
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));</script>
+
+
+
     <style>@media (min-width: 760px) {
 
             .full_post_img{
@@ -76,8 +87,8 @@
                             </ul>
                             <!--KODE PAGINATION START-->
                             <div class="kode_pagination">
-                                @if(count($prev) > 0)  <a class="prve" href="{{url('fullpost/'.$prev->id)}}"><i class="fa fa-arrow-left"></i>Previous</a> @endif
-                               @if(count($next) > 0) <a class="next" href="{{url('fullpost/'.$next->id)}}" >Next<i class="fa fa-arrow-right"></i></a> @endif
+                                @if(count($prev))  <a class="prve" href="{{url('fullpost/'.$prev->TextTrans('slug'))}}"><i class="fa fa-arrow-left"></i>Previous</a> @endif
+                               @if(count($next)) <a class="next" href="{{url('fullpost/'.$next->TextTrans('slug'))}}" >Next<i class="fa fa-arrow-right"></i></a> @endif
                             </div>
                             <!--KODE PAGINATION END-->
                         </div>
@@ -93,28 +104,27 @@
 
                         @endforeach
                         <!--KODE COMMENTS MARGIN END-->
+                        <div class="fb-comments" data-href="https://ae.app" data-numposts="5"></div>                        <!--KODE COMMENTS MARGIN START-->
+                        {{--<div class="kode_comments margin">--}}
+                            {{--<h4 class="comment_title">Leave Comment</h4>--}}
+                            {{--<form method="post" id="commentform" class="comment-form">--}}
+                                {{--<div class="kode-left-comment-sec">--}}
+                                    {{--<div class="kf_commet_field">--}}
+                                        {{--<input placeholder="Your Name" name="author" type="text" value="" data-default="Name*" size="30" required="">--}}
+                                    {{--</div>--}}
+                                    {{--<div class="kf_commet_field">--}}
+                                        {{--<input placeholder="Your Email" name="email" type="text" value="" data-default="Email*" size="30" required="">--}}
+                                    {{--</div>--}}
 
-                        <!--KODE COMMENTS MARGIN START-->
-                        <div class="kode_comments margin">
-                            <h4 class="comment_title">Leave Comment</h4>
-                            <form method="post" id="commentform" class="comment-form">
-                                <div class="kode-left-comment-sec">
-                                    <div class="kf_commet_field">
-                                        <input placeholder="Your Name" name="author" type="text" value="" data-default="Name*" size="30" required="">
-                                    </div>
-                                    <div class="kf_commet_field">
-                                        <input placeholder="Your Email" name="email" type="text" value="" data-default="Email*" size="30" required="">
-                                    </div>
 
+                                {{--</div>--}}
+                                {{--<div class="kode_textarea">--}}
+                                    {{--<textarea placeholder="Your Comments" name="comment"></textarea>--}}
+                                {{--</div>--}}
+                                {{--<p class="form-submit"><input name="submit" type="submit" class="medium_btn theme_color_bg btn_hover" value="Submit Now"></p>--}}
 
-                                </div>
-                                <div class="kode_textarea">
-                                    <textarea placeholder="Your Comments" name="comment"></textarea>
-                                </div>
-                                <p class="form-submit"><input name="submit" type="submit" class="medium_btn theme_color_bg btn_hover" value="Submit Now"></p>
-
-                            </form>
-                        </div>
+                            {{--</form>--}}
+                        {{--</div>--}}
                         <!--KODE COMMENTS MARGIN END-->
 
                         <!--ROW START-->
@@ -133,10 +143,10 @@
                                     <div class="kode_blog_des des_2">
                                         <figure class="them_overlay">
                                             <img src="{{asset('postimages/'.$p->image)}}" alt="">
-                                            <a  class="expand_btn btn_hover2" href="{{url('fullpost',$p->id)}}"><i class="fa icon-arrows-1"></i></a>
+                                            <a  class="expand_btn btn_hover2" href="{{url('blog.post'.$p->TextTrans('slug'))}}"><i class="fa icon-arrows-1"></i></a>
                                         </figure>
                                         <div class="kode_blog_text">
-                                            <h4><a href="{{url('fullpost',$p->id)}}"><span>{{$p->TextTrans('title')}}</span></a></h4>
+                                            <h4><a href="{{route('blog.post',$p->TextTrans('slug'))}}"><span>{{$p->TextTrans('title')}}</span></a></h4>
                                             <div class="kode_blog_caption">
                                                 <ul class="kode_meta meta_2">
                                                     <li><a href="#"><i class="fa fa-clock-o"></i>{{$p->created_at->diffForHumans()}}</a></li>
@@ -195,7 +205,7 @@
                                                 </figure></div>
 
                                             <div class="kode_event_text">
-                                                <h6><a href="{{url('fullpost',$pos->id)}}">{{$pos->TextTrans('title')}}</a></h6>
+                                                <h6><a href="{{route('blog.post',$pos->TextTrans('slug'))}}">{{$pos->TextTrans('title')}}</a></h6>
                                                 <ul class="kode_meta">
                                                     <li><a href="#"><i class="fa fa-clock-o"></i>{{date('M  j , Y - h:ia',strtotime($pos->created_at))}}</a></li>
                                                 </ul>

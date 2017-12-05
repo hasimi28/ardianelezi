@@ -62,10 +62,10 @@
 
 
 
-                                    <a class="expand_btn btn_hover2" href="{{url('/fullpost',$p->id)}}"><i class="fa icon-arrows-1"></i></a>
+                                    <a class="expand_btn btn_hover2" href="{{url('blog.post',$p->TextTrans('slug'))}}"><i class="fa icon-arrows-1"></i></a>
                                 </figure>
                                 <div class="kode_blog_text">
-                                    <h4><a href="{{url('/fullpost',$p->id)}}"><span>{{$p->TextTrans('title')}}</span></a></h4>
+                                    <h4><a href="{{url('fullpost',$p->TextTrans('slug'))}}"><span>{{$p->TextTrans('title')}}</span></a></h4>
                                     <div class="kode_blog_caption">
 
                                         <p>{!! str_limit($p->TextTrans('desc'), 200) !!}</p>
@@ -125,7 +125,7 @@
                                         </figure></div>
 
                                         <div class="kode_event_text">
-                                            <h6><a href="{{url('fullpost',$pos->id)}}">{{$pos->TextTrans('title')}}</a></h6>
+                                            <h6><a href="{{url('fullpost',$pos->TextTrans('slug'))}}">{{$pos->TextTrans('title')}}</a></h6>
                                             <ul class="kode_meta">
                                                 <li><a href="#"><i class="fa fa-clock-o"></i>{{$pos->created_at->diffForHumans()}}</a></li>
                                             </ul>

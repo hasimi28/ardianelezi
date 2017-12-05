@@ -114,7 +114,7 @@
                         <ul class="kode scrollbar-indigo">
 
                             @foreach($category as $cat)
-                            <li><a href="{{url('/postwithcat',$cat->id)}}">{{$cat->NameTrans('name')}}</a></li>
+                            <li><a href="{{route('category.post',strtolower($cat->NameTrans('name')))}}">{{$cat->NameTrans('name')}}</a></li>
                             @endforeach
                         </ul>
                     </li>

@@ -2,6 +2,8 @@
 
 
 @section('content')
+    <div id="fb-root"></div>
+
     <div class="page-title">
 
         <div>
@@ -51,7 +53,7 @@
                                 <td> {{ $po->TextTrans('title') }} </td>
 
                                 <td class="hidden-sm hidden-xs"> {{ $po->TextTrans('slug') }} </td>
-                                <td class="hidden-sm hidden-xs">  {!! str_limit($po->TextTrans('desc'), 200) !!} </td>
+                                <td class="hidden-sm hidden-xs">  {!! str_limit($po->TextTrans('desc'), 150) !!} </td>
 
                                 <td class="hidden-sm hidden-xs"> {{ $po->created_at }} </td>
                                 <td style="text-align:center"> <a href="{{route('post.edit',$po->id)}}" class="col-12 col-md-12 btn-primary btn-block"> <i class="fa fa-edit"></i> </a>
