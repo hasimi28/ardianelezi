@@ -26,6 +26,10 @@ class DatabaseSeeder extends Seeder
     ]);
 
 
+        DB::table('post_categories')->insert([
+            'name_sq' => 'Hadithe',
+            'name_de' => 'Hadithe De',
 
+        ]);
     }
 }

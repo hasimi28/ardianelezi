@@ -9,6 +9,13 @@ use Illuminate\Support\Facades\Session;
 
 class CategoryPost extends Controller
 {
+
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -16,7 +23,7 @@ class CategoryPost extends Controller
      */
     public function index()
     {
-       $postcategory = PostCategory::all();
+       $postcategory = PostCategory::orderBy('id','desc')->get();
 
         return view('backend.pages.postcategory')->withPostcategory($postcategory);
     }

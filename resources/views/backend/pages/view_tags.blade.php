@@ -119,6 +119,6 @@
 
 @section('js')
 
-
+    @include('include.datatable')
 
 @endsection

@@ -18,6 +18,13 @@ use Illuminate\Validation\ValidationException;
 use App\Role;
 class UserController extends Controller
 {
+
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     /**
      * Display a listing of the resource.
      *

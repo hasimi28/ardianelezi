@@ -36,15 +36,15 @@
 
                                     <figure class="them_overlay them" id="them">
                                         <img src="{{asset('postimages/'.$pos->image)}}"   alt="" class="">
-                                        <a class="plus_icon"  href="{{url('blog.post',$p->TextTrans('slug'))}}"><i class="fa icon-arrows-1"></i></a>
+                                        <a class="plus_icon"  href="{{url('blog.post',$pos->TextTrans('slug'))}}"><i class="fa icon-arrows-1"></i></a>
                                     </figure>
 
                                     <div class="kode_blog_text">
                                         <ul class="kode_meta">
                                             <li><a href="javascript:void(0)"><i class="fa fa-calendar"></i>{{$pos->created_at->diffForHumans()}}</a></li>
-                                            <li><a href="{{url('postwithcat/'.$pos->categories->id)}}"><i class="fa fa-book"></i>{{$pos->categories->NameTrans('name')}}</a></li>
+                                            <li><a href="{{url('/category',strtolower($pos->categories->NameTrans('name')))}}"><i class="fa fa-book"></i>{{$pos->categories->NameTrans('name')}}</a></li>
                                         </ul>
-                                        <a href="{{url('blog.post',$p->TextTrans('slug'))}}"><h5>{{$pos->TextTrans('title')}}</h5></a>
+                                        <a href="{{url('blog.post',$pos->TextTrans('slug'))}}"><h5>{{$pos->TextTrans('title')}}</h5></a>
                                         <ul class="kode_meta meta_2">
                                             <li><a href="#"><i class="fa fa-comments"></i>23 Comments</a></li>
                                             <li><a href="#"><i class="fa fa-heart"></i>654 Likes</a></li>

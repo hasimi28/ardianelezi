@@ -2,26 +2,22 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Tag;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Session;
+use App\Answer;
+use App\Questions;
+use Mews\Purifier\Facades\Purifier;
 
-class TagsController extends Controller
+class AnswerController extends Controller
 {
-
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {   $tags = Tag::all();
-        return view('backend.pages.view_tags')->withTags($tags);
+    {
+        //
     }
 
     /**
@@ -31,7 +27,7 @@ class TagsController extends Controller
      */
     public function create()
     {
-
+        //
     }
 
     /**
@@ -43,21 +39,27 @@ class TagsController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'name_sq' => 'required|max:255',
-            'name_de' => 'required|max:255',
+            'answer_title' => 'required',
+            'answer' => 'required',
+            'questions_id' => 'required',
+            'status_public' => 'required',
         ]);
 
+        $answer = new Answer();
+        $answer->answer_title = $request->answer_title;
+        $answer->answer =  Purifier::clean($request->answer);
+        $answer->questions_id = $request->questions_id;
 
-        $tag = New Tag;
-        $tag->name_sq = $request->name_sq;
-        $tag->name_de = $request->name_de;
+        if($answer->save()){
 
-        $tag->save();
+                    $questions = Questions::find($request->questions_id);
+                    $questions->status_public = $request->status_public;
+                    $questions->save();
+                    return redirect()->back();
 
-        Session::flash('success','Tagi u shtua me sukses');
+                }
+            }
 
-        return redirect()->back();
-    }
 
     /**
      * Display the specified resource.
@@ -67,8 +69,7 @@ class TagsController extends Controller
      */
     public function show($id)
     {
-        $tags = Tag::findOrFail($id);
-        return view('backend.pages.showtag')->withTags($tags);
+        //
     }
 
     /**
@@ -79,8 +80,8 @@ class TagsController extends Controller
      */
     public function edit($id)
     {
-        $tags = Tag::findOrFail($id);
-        return view('backend.pages.edit_tags')->withTags($tags);
+        $answer = Answer::findOrFail($id);
+        return view('backend.pages.answer_edit')->withAnswer($answer);
     }
 
     /**
@@ -92,20 +93,23 @@ class TagsController extends Controller
      */
     public function update(Request $request, $id)
     {
+
         $this->validate($request, [
-            'name_sq' => 'required|max:255',
-            'name_de' => 'required|max:255',
+            'answer_title' => 'required',
+            'answer' => 'required',
+
         ]);
 
-        $tag = Tag::findOrFail($id);
-        $tag->name_sq = $request->name_sq;
-        $tag->name_de = $request->name_de;
+        $answer = Answer::findOrFail($id);
+        $answer->answer_title = $request->answer_title;
+        $answer->answer = Purifier::clean($request->answer);
+        $answer->save();
 
-        $tag->save();
+        $question = Questions :: findOrFail($answer->questions->id);
+        $question->status_public = $request->status_public;
+        $question->save();
 
-        Session::flash('success','Tagi u ndryshua me sukses');
-
-        return redirect('backend/tags');
+        return redirect('backend/questions');
     }
 
     /**
@@ -116,12 +120,6 @@ class TagsController extends Controller
      */
     public function destroy($id)
     {
-        $tag = Tag::find($id);
-        $tag->posts()->detach();
 
-        $tag->delete();
-
-        Session::flash('success','Tagi u fshi me sukses');
-        return redirect('backend/tags');
     }
 }

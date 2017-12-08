@@ -88,8 +88,8 @@
 
     @endsection
 
-    @section('js')
+@section('js')
 
+    @include('include.datatable')
 
-
-    @endsection
+@endsection

@@ -10,6 +10,8 @@ use DB;
 
 class CatPostController extends Controller
 {
+
+
     public function posts($name){
 
         $cat = PostCategory::where('name_sq',strtolower($name))->orWhere('name_de',strtolower($name))->get();

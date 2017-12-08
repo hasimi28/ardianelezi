@@ -13,6 +13,13 @@ use Mews\Purifier\Facades\Purifier;
 
 class AdminPost extends Controller
 {
+
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -45,6 +52,9 @@ class AdminPost extends Controller
      */
     public function store(Request $request)
     {
+
+
+
         $this->validate($request, [
             'title_sq' => 'required',
             'title_de' => 'required',

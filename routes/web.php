@@ -30,6 +30,8 @@ Route::resource('/roles', 'Admin\RoleController', ['except' => 'destroy']);
 Route::resource('/post', 'Admin\AdminPost');
 Route::resource('/category', 'Admin\CategoryPost');
 Route::resource('/tags', 'Admin\TagsController');
+Route::resource('/questions', 'Admin\QuestionAdmController');
+Route::resource('/answer', 'Admin\AnswerController');
 });
 
 Route::get('/home', 'HomeController@index')->name('home');
@@ -42,3 +44,5 @@ Route::get('/category/{name}',['as'=>'category.post', 'uses'=>'CatPostController
 Route::get('/fullpost/{slug}',['as'=>'blog.post', 'uses'=>'CatPostController@idpost'])
     ->where('slug_de','[\w\d\-\_]+');
 Route::get('/postwtag/{id}', 'TagspostController@show');
+Route::resource('/ask', 'AskController');
+Route::get('/vquestions', 'AskController@view_questions');

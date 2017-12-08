@@ -150,7 +150,7 @@
                                             <div class="kode_blog_caption">
                                                 <ul class="kode_meta meta_2">
                                                     <li><a href="#"><i class="fa fa-clock-o"></i>{{$p->created_at->diffForHumans()}}</a></li>
-                                                    <li><a href="#"><i class="fa fa-book"></i>{{$p->categories->NameTrans('name')}}</a></li>
+                                                    <li><a href="{{url('/category',strtolower($p->categories->NameTrans('name')))}}"><i class="fa fa-book"></i>{{$p->categories->NameTrans('name')}}</a></li>
                                                 </ul>
                                                 <a class="share_link hvr-ripple-out" href="#"><i class="fa fa-share-alt"></i></a>
                                             </div>
@@ -184,7 +184,7 @@
                         <div class="siderbar_categories margin sidebar_bg">
                             <h4 class="sidebar_title">Categories</h4>
                             <ul class="categories_detail">
-                                @foreach($category5 as $cat) <li><a href="{{url('/postwithcat',$cat->id)}}">{{$cat->NameTrans('name')}}</a></li>@endforeach
+                                @foreach($category5 as $cat) <li><a href="{{url('/category',strtolower($cat->NameTrans('name')))}}">{{$cat->NameTrans('name')}}</a></li>@endforeach
                             </ul>
                         </div>
 
@@ -207,7 +207,7 @@
                                             <div class="kode_event_text">
                                                 <h6><a href="{{route('blog.post',$pos->TextTrans('slug'))}}">{{$pos->TextTrans('title')}}</a></h6>
                                                 <ul class="kode_meta">
-                                                    <li><a href="#"><i class="fa fa-clock-o"></i>{{date('M  j , Y - h:ia',strtotime($pos->created_at))}}</a></li>
+                                                    <li><a href="#"><i class="fa fa-clock-o"></i>{{$pos->created_at->diffForHumans()}}</a></li>
                                                 </ul>
                                             </div>
 

@@ -32,8 +32,11 @@
                         <ul>
                             <li><a href="#"><i class="fa fa-envelope"></i>contact@infomosque.com</a></li>
                             <li><a href="#"><i class="fa icon-technology"></i>+92 - 334 - 2797084</a></li>
+
                             <li>
                                 <div class="dropdown">
+
+
                                     <button id="dLabel" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                         @if ( Config::get('app.locale') == 'sq')
 
@@ -112,10 +115,11 @@
 
                     <li ><a href="#">Shkrime</a>
                         <ul class="kode scrollbar-indigo">
-
+                            @if(count($category) > 0)
                             @foreach($category as $cat)
                             <li><a href="{{route('category.post',strtolower($cat->NameTrans('name')))}}">{{$cat->NameTrans('name')}}</a></li>
                             @endforeach
+                            @endif
                         </ul>
                     </li>
                     <li><a href="#">Video Ligjerata</a>
@@ -134,9 +138,8 @@
                             <li><a href="project-detail.html">Zekati</a></li>
                         </ul>
                     </li>
-
-                    <li><a href="contact-us.html">Contact</a></li>
-                    <li><a href="{{url('kuran')}}">Read Kuran</a></li>
+                    <li><a href="{{url('/vquestions')}}">Pyetjet</a></li>
+                    {{--<li><a href="{{url('kuran')}}">Read Kuran</a></li>--}}
                 </ul>
                 <!--DL Menu Start-->
                 <div id="kode-responsive-navigation" class="dl-menuwrapper">

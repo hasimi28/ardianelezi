@@ -43,3 +43,4 @@
 
 <script src="{{ asset('css/themes/js/search-script.js') }}"></script>
 
+<script src="{{ asset('css/themes/js/accordion.js') }}"></script>
