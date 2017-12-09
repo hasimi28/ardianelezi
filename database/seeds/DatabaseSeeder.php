@@ -22,7 +22,8 @@ class DatabaseSeeder extends Seeder
         'desc_sq' => 'pershkrim ne shqip',
         'desc_de' => 'desc in de',
         'slug_sq' => 'slug title',
-         'slug_de' => 'slug title de',
+        'slug_de' => 'slug title de',
+        'category_id' => '1',
     ]);
 
 

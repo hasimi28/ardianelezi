@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreatePostsTable extends Migration
+class CreateVideosDeTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,16 +13,14 @@ class CreatePostsTable extends Migration
      */
     public function up()
     {
-        Schema::create('posts', function (Blueprint $table) {
+        Schema::create('videos_de', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('title_sq')->nullable();
-            $table->string('title_de')->nullable();
-            $table->text('desc_sq')->nullable();
-            $table->text('desc_de')->nullable();
-            $table->string('slug_sq')->unique()->nullable();
-            $table->string('slug_de')->unique()->nullable();
+            $table->string('title');
+            $table->string('youtube_id');
+            $table->string('filename');
             $table->integer('category_id')->unsigned();
             $table->timestamps();
+
         });
     }
 
@@ -33,6 +31,6 @@ class CreatePostsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('posts');
+        Schema::dropIfExists('videos_de');
     }
 }

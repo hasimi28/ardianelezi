@@ -7,6 +7,7 @@
     <div class="kode_contact_des">
         <div class="container">
             <div class="row">
+
                 <div class="kode_service_faq">
                     {{--<h4 class="comment_title">Pyetjet e Parashtruara</h4>--}}
                     <a class="medium_btn theme_color_bg btn_hover2" style="float:right;" href="{{route('ask.index')}}">Parashtro Pyetje</a>

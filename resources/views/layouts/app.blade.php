@@ -8,7 +8,9 @@
     @yield('head')
 
 </head>
+
 <body style="overflow-x:hidden;">
+
     <div class="wraper">
 
 @include('include/header')

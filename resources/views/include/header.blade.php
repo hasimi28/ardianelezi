@@ -124,10 +124,9 @@
                     </li>
                     <li><a href="#">Video Ligjerata</a>
                         <ul class="kode">
-                            <li><a href="project.html">Ramazani</a></li>
-                            <li><a href="project-01.html">Namazi</a></li>
-                            <li><a href="project-list.html">Haxhi</a></li>
-                            <li><a href="project-detail.html">Zekati</a></li>
+                            <li><a href="{{route('video.index')}}">Shqip</a></li>
+                            <li><a href="project-01.html">Gjermanisht</a></li>
+
                         </ul>
                     </li>
                     <li><a href="#">Audio Ligjerata</a>
@@ -139,6 +138,7 @@
                         </ul>
                     </li>
                     <li><a href="{{url('/vquestions')}}">Pyetjet</a></li>
+
                     {{--<li><a href="{{url('kuran')}}">Read Kuran</a></li>--}}
                 </ul>
                 <!--DL Menu Start-->

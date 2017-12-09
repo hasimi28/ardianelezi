@@ -1,8 +1,8 @@
 <header class="main-header hidden-print"><a class="logo" href="index.html">ArdianElezi</a>
-    <nav class="navbar navbar-static-top">
+    <nav class="navbar navbar-static-top" >
         <!-- Sidebar toggle button--><a class="sidebar-toggle" href="#" data-toggle="offcanvas"></a>
         <!-- Navbar Right Menu-->
-        <div class="navbar-custom-menu">
+        <div class="navbar-custom-menu" >
             <ul class="top-nav">
                 <!--Notification Menu-->
                 <li class="dropdown notification-menu"><a class="dropdown-toggle" href="#" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-bell-o fa-lg"></i></a>
@@ -35,8 +35,8 @@
 </header>
 
 <!-- Side-Nav-->
-<aside class="main-sidebar hidden-print">
-    <section class="sidebar">
+<aside class="main-sidebar hidden-print" >
+    <section class="sidebar" >
         <div class="user-panel">
             <div class="pull-left image"><img class="img-circle" src="https://s3.amazonaws.com/uifaces/faces/twitter/jsa/48.jpg" alt="User Image"></div>
             <div class="pull-left info">
@@ -45,7 +45,7 @@
             </div>
         </div>
         <!-- Sidebar Menu-->
-        <ul class="sidebar-menu">
+        <ul class="sidebar-menu" >
 
             <li class="active"><a href="index.html"><i class="fa fa-dashboard"></i><span>Dashboard</span></a></li>
             <li class="treeview"><a href="#"><i class="fa fa-edit"></i><span>Posts/Categories</span><i class="fa fa-angle-right"></i></a>
@@ -83,45 +83,28 @@
 
                 </ul>
             </li>
-            <li><a href="charts.html"><i class="fa fa-pie-chart"></i><span>Charts</span></a></li>
-            <li class="treeview"><a href="#"><i class="fa fa-edit"></i><span>Forms</span><i class="fa fa-angle-right"></i></a>
+
+            <li class="treeview"><a href="#"><i class="fa fa-users"></i><span>Video</span><i class="fa fa-angle-right"></i></a>
                 <ul class="treeview-menu">
-                    <li><a href="form-components.html"><i class="fa fa-circle-o"></i> Form Components</a></li>
-                    <li><a href="form-custom.html"><i class="fa fa-circle-o"></i> Custom Components</a></li>
-                    <li><a href="form-samples.html"><i class="fa fa-circle-o"></i> Form Samples</a></li>
-                    <li><a href="form-notifications.html"><i class="fa fa-circle-o"></i> Form Notifications</a></li>
+                    <li><a href="{{route('videomanager.index')}}"><i class="fa fa-circle-o"></i> Video Shqip </a></li>
+                    <li><a href="{{route('videomanager.create')}}"><i class="fa fa-circle-o"></i> Add Video Shqip </a></li>
+                    <li><a href="{{route('videomanagerde.index')}}"><i class="fa fa-circle-o"></i> Video Gjermanisht </a></li>
+                    <li><a href="{{route('videomanagerde.create')}}"><i class="fa fa-circle-o"></i> Add Video Gjermanisht </a></li>
+
                 </ul>
             </li>
-            <li class="treeview"><a href="#"><i class="fa fa-th-list"></i><span>Tables</span><i class="fa fa-angle-right"></i></a>
+            <li class="treeview"><a href="#"><i class="fa fa-users"></i><span>Video Category</span><i class="fa fa-angle-right"></i></a>
                 <ul class="treeview-menu">
-                    <li><a href="table-basic.html"><i class="fa fa-circle-o"></i> Basic Tables</a></li>
-                    <li><a href="table-data-table.html"><i class="fa fa-circle-o"></i> Data Tables</a></li>
+                    <li><a href="{{route('videomanager.index')}}"><i class="fa fa-circle-o"></i> Kategorit Shqip </a></li>
+                    <li><a href="{{route('videomanager.create')}}"><i class="fa fa-circle-o"></i> Add Kategori Shqip </a></li>
+                    <li><a href="{{route('videomanagerde.index')}}"><i class="fa fa-circle-o"></i> Kategorit Gjermanisht </a></li>
+                    <li><a href="{{route('videomanagerde.create')}}"><i class="fa fa-circle-o"></i> Add Kategori Gjermanisht </a></li>
+
                 </ul>
             </li>
-            <li class="treeview"><a href="#"><i class="fa fa-file-text"></i><span>Pages</span><i class="fa fa-angle-right"></i></a>
-                <ul class="treeview-menu">
-                    <li><a href=""><i class="fa fa-circle-o"></i> Blank Page</a></li>
-                    <li><a href=""><i class="fa fa-circle-o"></i> Login Page</a></li>
-                    <li><a href="page-lockscreen.html"><i class="fa fa-circle-o"></i> Lockscreen Page</a></li>
-                    <li><a href="page-user.html"><i class="fa fa-circle-o"></i> User Page</a></li>
-                    <li><a href="page-invoice.html"><i class="fa fa-circle-o"></i> Invoice Page</a></li>
-                    <li><a href="page-calendar.html"><i class="fa fa-circle-o"></i> Calendar Page</a></li>
-                    <li><a href="page-mailbox.html"><i class="fa fa-circle-o"></i> Mailbox</a></li>
-                    <li><a href="page-error.html"><i class="fa fa-circle-o"></i> Error Page</a></li>
-                </ul>
-            </li>
-            <li class="treeview"><a href="#"><i class="fa fa-share"></i><span>Multilevel Menu</span><i class="fa fa-angle-right"></i></a>
-                <ul class="treeview-menu">
-                    <li><a href="blank-page.html"><i class="fa fa-circle-o"></i> Level One</a></li>
-                    <li class="treeview"><a href="#"><i class="fa fa-circle-o"></i><span> Level One</span><i class="fa fa-angle-right"></i></a>
-                        <ul class="treeview-menu">
-                            <li><a href="blank-page.html"><i class="fa fa-circle-o"></i> Level Two</a></li>
-                            <li><a href="#"><i class="fa fa-circle-o"></i><span> Level Two</span></a></li>
-                        </ul>
-                    </li>
-                </ul>
-            </li>
+
         </ul>
+
     </section>
 </aside>
 

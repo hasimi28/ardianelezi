@@ -32,6 +32,8 @@ Route::resource('/category', 'Admin\CategoryPost');
 Route::resource('/tags', 'Admin\TagsController');
 Route::resource('/questions', 'Admin\QuestionAdmController');
 Route::resource('/answer', 'Admin\AnswerController');
+Route::resource('/videomanager', 'Admin\VideoAdminController');
+Route::resource('/videomanagerde', 'Admin\VideodeAdminController');
 });
 
 Route::get('/home', 'HomeController@index')->name('home');
@@ -46,3 +48,4 @@ Route::get('/fullpost/{slug}',['as'=>'blog.post', 'uses'=>'CatPostController@idp
 Route::get('/postwtag/{id}', 'TagspostController@show');
 Route::resource('/ask', 'AskController');
 Route::get('/vquestions', 'AskController@view_questions');
+Route::resource('/video', 'VideoController');
