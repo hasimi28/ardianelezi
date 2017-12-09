@@ -34,6 +34,8 @@ Route::resource('/questions', 'Admin\QuestionAdmController');
 Route::resource('/answer', 'Admin\AnswerController');
 Route::resource('/videomanager', 'Admin\VideoAdminController');
 Route::resource('/videomanagerde', 'Admin\VideodeAdminController');
+Route::resource('/categorymanager', 'Admin\CatVideoController');
+Route::resource('/categorymanagerde', 'Admin\CatVideoDeController');
 });
 
 Route::get('/home', 'HomeController@index')->name('home');

@@ -7,8 +7,8 @@
   <title>  @yield('title') </title>
 </head>
 
-{{--<body class="sidebar-mini fixed">--}}
-<body>
+<body class="sidebar-mini fixed">
+
 @include('backend\pages.header_nav')
 
 <div class="wrapper">

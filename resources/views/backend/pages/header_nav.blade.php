@@ -95,10 +95,10 @@
             </li>
             <li class="treeview"><a href="#"><i class="fa fa-users"></i><span>Video Category</span><i class="fa fa-angle-right"></i></a>
                 <ul class="treeview-menu">
-                    <li><a href="{{route('videomanager.index')}}"><i class="fa fa-circle-o"></i> Kategorit Shqip </a></li>
-                    <li><a href="{{route('videomanager.create')}}"><i class="fa fa-circle-o"></i> Add Kategori Shqip </a></li>
-                    <li><a href="{{route('videomanagerde.index')}}"><i class="fa fa-circle-o"></i> Kategorit Gjermanisht </a></li>
-                    <li><a href="{{route('videomanagerde.create')}}"><i class="fa fa-circle-o"></i> Add Kategori Gjermanisht </a></li>
+                    <li><a href="{{route('categorymanager.index')}}"><i class="fa fa-circle-o"></i> Kategorit Shqip </a></li>
+                    <li><a href="{{route('categorymanager.create')}}"><i class="fa fa-circle-o"></i> Add Kategori Shqip </a></li>
+                    <li><a href="{{route('categorymanagerde.index')}}"><i class="fa fa-circle-o"></i> Kategorit Gjermanisht </a></li>
+                    <li><a href="{{route('categorymanagerde.create')}}"><i class="fa fa-circle-o"></i> Add Kategori Gjermanisht </a></li>
 
                 </ul>
             </li>

@@ -6,8 +6,8 @@
     <div class="page-title">
         <div>
             <h1><i class="fa fa-edit"></i> Video Shqip </h1>
-            <p>Bootstrap default form components</p>
-            <a href="{{route('videomanager.create')}}" class="btn btn-primary">Add New Video</a>
+
+
         </div>
         <div>
             <ul class="breadcrumb">
@@ -22,6 +22,9 @@
 
             <div class="card">
                 <div class="row">
+                    <div class="form-group">
+                        <a href="{{route('videomanager.create')}}" class="btn  btn-primary icon-btn" type="submit"><i class="fa fa-fw fa-lg fa-check-circle"></i>Shto Video</a>
+                    </div>
                     @if ($errors->any())
                         <div class="alert alert-danger">
 

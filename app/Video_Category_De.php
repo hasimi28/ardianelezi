@@ -14,6 +14,6 @@ class Video_Category_De extends Model
 
     public function video_de(){
 
-        return $this->hasMany('App\Video_de');
+        return $this->hasMany('App\Video_de','category_id');
     }
 }

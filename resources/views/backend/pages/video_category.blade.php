@@ -5,15 +5,14 @@
 
     <div class="page-title">
         <div>
-            <h1><i class="fa fa-edit"></i> Video Gjermanisht </h1>
+            <h1><i class="fa fa-edit"></i>Video Kategorit Shqip</h1>
             <p>Bootstrap default form components</p>
-
         </div>
         <div>
             <ul class="breadcrumb">
                 <li><i class="fa fa-home fa-lg"></i></li>
                 <li>Forms</li>
-                <li><a href="#">Video</a></li>
+                <li><a href="">Category Shqip</a></li>
             </ul>
         </div>
     </div>
@@ -21,10 +20,17 @@
         <div class="col-md-12">
 
             <div class="card">
+                <div class="form-group">
+                    <a href="{{route('categorymanager.create')}}" class="btn  btn-primary icon-btn" type="submit"><i class="fa fa-fw fa-lg fa-check-circle"></i>Shti Kategori </a>
+                </div>
                 <div class="row">
-                    <div class="form-group">
-                        <a href="{{route('videomanagerde.create')}}" class="btn  btn-primary icon-btn" type="submit"><i class="fa fa-fw fa-lg fa-check-circle"></i>Shto Video</a>
-                    </div>
+                    @if (\Session::has('success'))
+                        <div class="alert alert-success">
+
+                            <p>{!! \Session::get('success') !!}</p>
+
+                        </div>
+                    @endif
                     @if ($errors->any())
                         <div class="alert alert-danger">
 
@@ -35,7 +41,7 @@
                             </ul>
                         </div>
                     @endif
-                    <div class="col-lg-12">
+                    <div class="col-md-12">
 
                         <div class="well bs-component">
                             <table class="table table-hover table-bordered" id="sampleTable">
@@ -44,10 +50,8 @@
 
 
                                     <th  class="hidden-sm hidden-xs">ID</th>
-                                    <th>Title</th>
-                                    <th class="hidden-sm hidden-xs">Youtube ID</th>
-                                    <th class="hidden-sm hidden-xs">Kategoria</th>
-                                    <th class="hidden-sm hidden-xs">File Name</th>
+                                    <th>Name</th>
+                                    <th>Video</th>
                                     <th class="hidden-sm hidden-xs">Created</th>
                                     <th>Action</th>
 
@@ -55,23 +59,21 @@
                                 </thead>
                                 <tbody>
 
-                                @foreach($video as $vi)
+                                @foreach($categories as $category)
 
                                     <tr>
-                                        <td  class="hidden-sm hidden-xs"> {{ $vi->id }} </td>
-                                        <td> {{ $vi->title }} </td>
-                                        <td class="hidden-sm hidden-xs"> {{ $vi->youtube_id }} </td>
-                                        <td class="hidden-sm hidden-xs"> {{ $vi->video_category_de->name }} </td>
-                                        <td class="hidden-sm hidden-xs"> {{ $vi->filename }} </td>
-                                        <td class="hidden-sm hidden-xs"> {{ $vi->created_at }} </td>
+                                        <td  class="hidden-sm hidden-xs"> {{ $category->id }} </td>
+                                        <td> {{ $category->name }} </td>
+                                        <td>@if(!empty($category->video))  {{ $category->video->count() }} @else 0 @endif </td>
+                                        <td> {{ $category->created_at }} </td>
                                         <td style="text-align:center">
 
-                                            <a href="{{route('videomanagerde.edit',$vi->id)}}" class="btn-primary btn-block" > Edit</a>
+                                            <a href="{{route('categorymanager.edit',$category->id)}}" class="btn-primary btn-block" > Edit</a>
 
-                                            <form action="{{route('videomanagerde.destroy',$vi->id)}}" id="form_delete" accept-charset="UTF-8" method="POST" style="margin-top:3px">
+                                            <form action="{{route('categorymanager.destroy',$category->id)}}" id="form_delete" accept-charset="UTF-8" method="POST" style="margin-top:3px">
                                                 {{ csrf_field() }}
                                                 <input type="hidden" name="_method" value="DELETE">
-                                                <input type="hidden" name="id" value="{{$vi->id}}">
+                                                <input type="hidden" name="id" value="{{$category->id}}">
                                                 <button type="submit"  class="col-12 col-md-12 btn-danger btn-block delete"> Delete</button>
                                             </form>
 
@@ -86,6 +88,7 @@
 
                                 </tbody>
                             </table>
+
                         </div>
                     </div>
 
